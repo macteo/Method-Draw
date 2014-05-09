@@ -1538,7 +1538,6 @@
 					if(panels[el_name]) {
 						var cur_panel = panels[el_name];
 						$('#' + el_name + '_panel').show();
-			      
 			      // corner radius has to live in a different panel
 			      // because otherwise it changes the position of the 
 			      // of the elements
@@ -1604,6 +1603,26 @@
 					menu_items.disableContextMenuItems('#delete,#cut,#copy,#group,#ungroup,#move_front,#move_up,#move_down,#move_back');
 				}
 				
+                if (el_name == "ellipse") {
+                    var old_id = elem.getAttribute("id");
+                    var split = old_id.split('_');
+                    if (split.length == 3) {
+                        if (typeof split[1] != "undefined"){
+                            $('#tool_beacon_major').attr("data-value", split[1]);
+                        } else {
+                            $('#tool_beacon_major').attr("data-value", "");
+                        }
+                        if (typeof split[2] != "undefined"){
+                            $('#tool_beacon_minor').attr("data-value", split[2]);
+                        } else {
+                            $('#tool_beacon_minor').attr("data-value", "");
+                        }
+                    } else {
+                        $('#tool_beacon_major').attr("data-value", "");
+                        $('#tool_beacon_minor').attr("data-value", "");
+                    }
+                }
+                
 				// update history buttons
 				if (undoMgr.getUndoStackSize() > 0) {
 					$('#tool_undo').removeClass( 'disabled');
@@ -1747,8 +1766,9 @@
                 
                 if (attr == "bmajor"){
                     console.log("major");
-                    
                 }
+                
+                
                 
 				var multiplier = el.getAttribute("data-multiplier") || 1;
 				multiplier = parseFloat(multiplier);

@@ -8091,7 +8091,6 @@ var changeSelectedAttributeNoUndo = this.changeSelectedAttributeNoUndo = functio
                 var split = old_id.split('_');
                 var old_major;
                 var old_minor;
-                console.log("Count " + split.length);
                 if (split.length == 3) {
                     old_major = split[1];
                     old_minor = split[2];

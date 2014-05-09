@@ -5332,11 +5332,13 @@ this.svgCanvasToString = function() {
 	$(svgcontent).find('g:data(gsvg)').each(function() {
 		var attrs = this.attributes;
 		var len = attrs.length;
+        
 		for(var i=0; i<len; i++) {
 			if(attrs[i].nodeName == 'id' || attrs[i].nodeName == 'style') {
 				len--;
 			}
 		}
+
 		// No significant attributes, so ungroup
 		if(len <= 0) {
 			var svg = this.firstChild;
@@ -5456,8 +5458,7 @@ this.svgToString = function(elem, indent) {
 						attrVal = svgedit.units.shortFloat(attrVal);
 					} else if(unit_re.test(attrVal)) {
 						attrVal = svgedit.units.shortFloat(attrVal) + unit;
-					}
-					
+					}                    
 					// Embed images when saving 
 					if(save_options.apply
 						&& elem.nodeName === 'image' 
@@ -8085,6 +8086,25 @@ var changeSelectedAttributeNoUndo = this.changeSelectedAttributeNoUndo = functio
 
   			} else if (attr == "#href") {
   				setHref(elem, newValue);
+  			} else if (attr == "bmajor" || attr == "bminor") {
+                var old_id = elem.getAttribute("id");
+                var split = old_id.split('_');
+                var old_major;
+                var old_minor;
+                console.log("Count " + split.length);
+                if (split.length == 3) {
+                    old_major = split[1];
+                    old_minor = split[2];
+                }
+                var id_string = "";
+                if (attr == "bmajor"){
+                    id_string = "beacon_" + newValue + "_" + old_minor;
+                } else if (attr == "bminor") {
+                    id_string = "beacon_" + old_major + "_" + newValue;
+                }
+                console.log(id_string);
+                elem.setAttribute("id", id_string);
+                // elem.removeAttribute(attr);
   			}
   			else elem.setAttribute(attr, newValue);
 

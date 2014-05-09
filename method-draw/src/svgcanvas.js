@@ -5332,6 +5332,7 @@ this.svgCanvasToString = function() {
 	$(svgcontent).find('g:data(gsvg)').each(function() {
 		var attrs = this.attributes;
 		var len = attrs.length;
+        
 		for(var i=0; i<len; i++) {
 			if(attrs[i].nodeName == 'id' || attrs[i].nodeName == 'style') {
 				len--;

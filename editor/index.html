@@ -280,6 +280,15 @@
 		  <input id="ellipse_ry" class="attr_changer" data-title="Change ellipse's y radius" size="3" data-attr="ry" pattern="[0-9]*" />
 		  <span>Radius Y</span>
 		</label>
+        <h4>Beacon</h4>
+		<label id="tool_beacon_major">
+		  <input id="beacon_major" class="attr_changer" data-title="Change beacon major value" size="3" data-attr="bmajor" pattern="[0-9]*" />
+		  <span>Major</span>
+		</label>
+		<label id="tool_beacon_minor">
+		  <input id="beacon_minor" class="attr_changer" data-title="Change beacon minor value" size="3" data-attr="bminor" pattern="[0-9]*" />
+		  <span>Minor</span>
+		</label>
 	</div>
 
 	<div id="line_panel" class="context_panel clearfix">
@@ -402,7 +411,7 @@
 	
 	<!-- Buttons when a single element is selected -->
 	<div id="selected_panel" class="context_panel">
-
+        <h4>Other</h4>
 		<label id="tool_angle" data-title="Change rotation angle" class="draginput">
 			<input id="angle" class="attr_changer" size="2" value="0" data-attr="transform" data-min="-180" data-max="180" type="text"/>
 			<span class="icon_label">Rotation</span>
@@ -411,7 +420,7 @@
 			</div>
 		</label>
 		
-			<label class="toolset" id="tool_opacity" data-title="Change selected item opacity">
+		<label class="toolset" id="tool_opacity" data-title="Change selected item opacity">
   			<input id="group_opacity" class="attr_changer" data-attr="opacity" data-multiplier="0.01" size="3" value="100" step="5" min="0" max="100" />
   		  <span id="group_opacityLabel" class="icon_label">Opacity</span>
   		</label>
@@ -501,6 +510,8 @@
       <span class="icon_label">Stroke Cap</span>
   	</label>
 	</div>
+  	<div class="clearfix"></div>
+    
 
 </div> <!-- tools_top -->
 	<div id="cur_context_panel">

@@ -1744,6 +1744,12 @@
 		  
 			changeAttribute = function(el, completed) {
 				var attr = el.getAttribute("data-attr");
+                
+                if (attr == "bmajor"){
+                    console.log("major");
+                    
+                }
+                
 				var multiplier = el.getAttribute("data-multiplier") || 1;
 				multiplier = parseFloat(multiplier);
 				var val = el.value * multiplier;
@@ -3504,18 +3510,20 @@
 			$('#path_y')       .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#rect_x')       .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#rect_y')       .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
-			$('#g_x')      .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
-			$('#g_y')      .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
+			$('#g_x')          .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
+			$('#g_y')          .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#image_x')      .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#text_y')       .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#text_x')       .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#image_y')      .dragInput({ min: null, max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
-			$('#rect_rx')      .dragInput({ min: 0,    max: 100,   step:  1,  callback: changeAttribute,    cursor: true                          });
-	    $('#stroke_width') .dragInput({ min: 0,    max: 99,    step:  1,  callback: changeStrokeWidth,   cursor: true, smallStep: 0.1, start: 1.5          });
+			$('#rect_rx')      .dragInput({ min: 0,    max: 100,   step:  1,  callback: changeAttribute,     cursor: true                          });
+	        $('#stroke_width') .dragInput({ min: 0,    max: 99,    step:  1,  callback: changeStrokeWidth,   cursor: true, smallStep: 0.1, start: 1.5          });
 			$('#angle')        .dragInput({ min: -180, max: 180,   step:  1,  callback: changeRotationAngle, cursor: false, dragAdjust: 0.5      });
-			$('#font_size')    .dragInput({ min: 1, max: 250, step: 1, callback: changeFontSize, cursor: true, stepfunc: stepFontSize, dragAdjust: .15 });
-			$('#group_opacity').dragInput({ min: 0,    max: 100,   step:  5,  callback: changeAttribute,       cursor: true,  start: 100             });
+			$('#font_size')    .dragInput({ min: 1,    max: 250,   step: 1,   callback: changeFontSize,      cursor: true, stepfunc: stepFontSize, dragAdjust: .15 });
+			$('#group_opacity').dragInput({ min: 0,    max: 100,   step:  5,  callback: changeAttribute,     cursor: true,  start: 100             });
 			$('#blur')         .dragInput({ min: 0,    max: 10,    step: .1,  callback: changeBlur,          cursor: true,  start: 0               });
+            $('#beacon_major') .dragInput({ min: 0,    max: 66000, step: .1,  callback: changeAttribute,     cursor: false,  start: 0               });
+            $('#beacon_minor') .dragInput({ min: 0,    max: 66000, step: .1,  callback: changeAttribute,     cursor: false,  start: 0               });
 				// Set default zoom 
 			$('#zoom').val(svgCanvas.getZoom() * 100);
 			

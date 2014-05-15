@@ -1320,7 +1320,29 @@
 			// This function also updates the opacity and id elements that are in the context panel
 			var updateToolbar = function() {
 				if (selectedElement != null) {
-					switch ( selectedElement.tagName ) {
+                    // var elementId = selectedElement.id;
+                    // var split = elementId.split('_');
+                    // console.log("element " + elementId)
+                    // if (split.length == 3 && split[0] == "beacon") {
+                    //     console.log("Split " + split.length)
+                    //     if (typeof split[1] != "undefined"){
+                    //         console.log("data value " + split[1])
+                    //         $('#tool_beacon_major').attr("data-value", split[1]);
+                    //     } else {
+                    //         $('#tool_beacon_major').attr("data-value", "");
+                    //     }
+                    //     if (typeof split[2] != "undefined"){
+                    //         console.log("data value " + split[2])
+                    //         $('#tool_beacon_minor').attr("data-value", split[2]);
+                    //     } else {
+                    //         $('#tool_beacon_minor').attr("data-value", "");
+                    //     }
+                    // } else {
+                    //     console.log("else")
+                    //     $('#tool_beacon_major').attr("data-value", "");
+                    //     $('#tool_beacon_minor').attr("data-value", "");
+                    // }
+                  switch ( selectedElement.tagName ) {
 					case 'use':
 					  $(".context_panel").hide();
 					  $("#use_panel").show();
@@ -1518,7 +1540,7 @@
 						rect: ['rx','width','height', 'x', 'y'],
 						image: ['width','height', 'x', 'y'],
 						circle: ['cx','cy','r'],
-						ellipse: ['cx','cy','rx','ry'],
+						ellipse: ['cx','cy','rx','ry', 'beaconmajor', 'beaconminor'],
 						line: ['x1','y1','x2','y2'], 
 						text: ['x', 'y'],
 						'use': [],
@@ -1608,18 +1630,18 @@
                     var split = old_id.split('_');
                     if (split.length == 3) {
                         if (typeof split[1] != "undefined"){
-                            $('#tool_beacon_major').attr("data-value", split[1]);
+                            $('#tool_ellipse_beaconmajor').attr("data-value", split[1]);
                         } else {
-                            $('#tool_beacon_major').attr("data-value", "");
+                            $('#tool_ellipse_beaconmajor').attr("data-value", "");
                         }
                         if (typeof split[2] != "undefined"){
-                            $('#tool_beacon_minor').attr("data-value", split[2]);
+                            $('#tool_ellipse_beaconmajor').attr("data-value", split[2]);
                         } else {
-                            $('#tool_beacon_minor').attr("data-value", "");
+                            $('#tool_ellipse_beaconmajor').attr("data-value", "");
                         }
                     } else {
-                        $('#tool_beacon_major').attr("data-value", "");
-                        $('#tool_beacon_minor').attr("data-value", "");
+                        $('#tool_ellipse_beaconmajor').attr("data-value", "");
+                        $('#tool_ellipse_beaconmajor').attr("data-value", "");
                     }
                 }
                 
@@ -3512,6 +3534,8 @@
 			$('#ellipse_cy')   .dragInput({ min: 1,    max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#ellipse_rx')   .dragInput({ min: 1,    max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#ellipse_ry')   .dragInput({ min: 1,    max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
+            $('#ellipse_beaconmajor') .dragInput({ min: 0,    max: 66000, step: 1,   callback: changeAttribute,     cursor: false,  start: 0               });
+            $('#ellipse_beaconminor') .dragInput({ min: 0,    max: 66000, step: 1,   callback: changeAttribute,     cursor: false,  start: 0               });
 			$("#image_height") .dragInput({ min: 1,    max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#circle_cx')    .dragInput({ min: 1,    max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
 			$('#circle_cy')    .dragInput({ min: 1,    max: null,  step:  1,  callback: changeAttribute,     cursor: false                         });
@@ -3542,8 +3566,6 @@
 			$('#font_size')    .dragInput({ min: 1,    max: 250,   step: 1,   callback: changeFontSize,      cursor: true, stepfunc: stepFontSize, dragAdjust: .15 });
 			$('#group_opacity').dragInput({ min: 0,    max: 100,   step:  5,  callback: changeAttribute,     cursor: true,  start: 100             });
 			$('#blur')         .dragInput({ min: 0,    max: 10,    step: .1,  callback: changeBlur,          cursor: true,  start: 0               });
-            $('#beacon_major') .dragInput({ min: 0,    max: 66000, step: .1,  callback: changeAttribute,     cursor: false,  start: 0               });
-            $('#beacon_minor') .dragInput({ min: 0,    max: 66000, step: .1,  callback: changeAttribute,     cursor: false,  start: 0               });
 				// Set default zoom 
 			$('#zoom').val(svgCanvas.getZoom() * 100);
 			

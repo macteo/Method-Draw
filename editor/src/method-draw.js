@@ -1625,25 +1625,25 @@
 					menu_items.disableContextMenuItems('#delete,#cut,#copy,#group,#ungroup,#move_front,#move_up,#move_down,#move_back');
 				}
 				
-                if (el_name == "ellipse") {
-                    var old_id = elem.getAttribute("id");
-                    var split = old_id.split('_');
-                    if (split.length == 3) {
-                        if (typeof split[1] != "undefined"){
-                            $('#tool_ellipse_beaconmajor').attr("data-value", split[1]);
-                        } else {
-                            $('#tool_ellipse_beaconmajor').attr("data-value", "");
-                        }
-                        if (typeof split[2] != "undefined"){
-                            $('#tool_ellipse_beaconmajor').attr("data-value", split[2]);
-                        } else {
-                            $('#tool_ellipse_beaconmajor').attr("data-value", "");
-                        }
-                    } else {
-                        $('#tool_ellipse_beaconmajor').attr("data-value", "");
-                        $('#tool_ellipse_beaconmajor').attr("data-value", "");
-                    }
-                }
+                // if (el_name == "ellipse") {
+                //     var old_id = elem.getAttribute("id");
+                //     var split = old_id.split('_');
+                //     if (split.length == 3) {
+                //         if (typeof split[1] != "undefined"){
+                //             $('#tool_ellipse_beaconmajor').attr("data-value", split[1]);
+                //         } else {
+                //             $('#tool_ellipse_beaconmajor').attr("data-value", "");
+                //         }
+                //         if (typeof split[2] != "undefined"){
+                //             $('#tool_ellipse_beaconmajor').attr("data-value", split[2]);
+                //         } else {
+                //             $('#tool_ellipse_beaconmajor').attr("data-value", "");
+                //         }
+                //     } else {
+                //         $('#tool_ellipse_beaconmajor').attr("data-value", "");
+                //         $('#tool_ellipse_beaconmajor').attr("data-value", "");
+                //     }
+                // }
                 
 				// update history buttons
 				if (undoMgr.getUndoStackSize() > 0) {
@@ -1785,12 +1785,6 @@
 		  
 			changeAttribute = function(el, completed) {
 				var attr = el.getAttribute("data-attr");
-                
-                if (attr == "bmajor"){
-                    console.log("major");
-                }
-                
-                
                 
 				var multiplier = el.getAttribute("data-multiplier") || 1;
 				multiplier = parseFloat(multiplier);

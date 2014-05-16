@@ -1199,6 +1199,8 @@ var remapElement = this.remapElement = function(selected,changes,m) {
 			var c = remap(changes.cx,changes.cy);
 			changes.cx = c.x;
 			changes.cy = c.y;
+            changes.beaconmajor = changes.beaconmajor;
+            changes.beaconminor = changes.beaconminor;
 			changes.rx = scalew(changes.rx);
 			changes.ry = scaleh(changes.ry);
 		
@@ -1514,7 +1516,7 @@ var recalculateDimensions = this.recalculateDimensions = function(selected) {
 			attrs = ["cx", "cy", "r"];
 			break;
 		case "ellipse":
-			attrs = ["cx", "cy", "rx", "ry"];
+			attrs = ["cx", "cy", "rx", "ry", "beaconmajor", "beaconminor"];
 			break;
 		case "foreignObject":
 		case "rect":
@@ -2651,6 +2653,8 @@ var getMouseTarget = this.getMouseTarget = function(evt) {
 						"cy": y,
 						"rx": 0,
 						"ry": 0,
+                        "beaconmajor" : 0,
+                        "beaconminor" : 0,
 						"id": getNextId(),
 						"opacity": cur_shape.opacity / 2
 					}
@@ -3033,6 +3037,8 @@ var getMouseTarget = this.getMouseTarget = function(evt) {
 				break;
 			case "ellipse":
 				var c = $(shape).attr(["cx", "cy"]);
+                var beaconmajor = $(shape).attr("beaconmajor");
+                var beaconminor = $(shape).attr("beaconminor");
 				var cx = Math.abs(start_x + (x - start_x)/2)
 				var cy = Math.abs(start_y + (y - start_y)/2);
  
@@ -7937,8 +7943,8 @@ this.convertToPath = function(elem, getBBox) {
 	switch (elem.tagName) {
 	case 'ellipse':
 	case 'circle':
-		var a = $(elem).attr(['rx', 'ry', 'cx', 'cy']);
-		var cx = a.cx, cy = a.cy, rx = a.rx, ry = a.ry;
+		var a = $(elem).attr(['rx', 'ry', 'cx', 'cy', 'beaconmajor', 'beaconminor']);
+		var cx = a.cx, cy = a.cy, rx = a.rx, ry = a.ry, beaconmajor = a.beaconmajor, beaconminor = a.beaconminor;
 		if(elem.tagName == 'circle') {
 			rx = ry = $(elem).attr('r');
 		}
@@ -8086,24 +8092,24 @@ var changeSelectedAttributeNoUndo = this.changeSelectedAttributeNoUndo = functio
 
   			} else if (attr == "#href") {
   				setHref(elem, newValue);
-  			} else if (attr == "bmajor" || attr == "bminor") {
-                var old_id = elem.getAttribute("id");
-                var split = old_id.split('_');
-                var old_major;
-                var old_minor;
-                if (split.length == 3) {
-                    old_major = split[1];
-                    old_minor = split[2];
-                }
-                var id_string = "";
-                if (attr == "bmajor"){
-                    id_string = "beacon_" + newValue + "_" + old_minor;
-                } else if (attr == "bminor") {
-                    id_string = "beacon_" + old_major + "_" + newValue;
-                }
-                console.log(id_string);
-                elem.setAttribute("id", id_string);
-                // elem.removeAttribute(attr);
+              // } else if (attr == "beaconmajor" || attr == "beaconminor") {
+              //                 var old_id = elem.getAttribute("id");
+              //                 var split = old_id.split('_');
+              //                 var old_major;
+              //                 var old_minor;
+              //                 if (split.length == 3) {
+              //                     old_major = split[1];
+              //                     old_minor = split[2];
+              //                 }
+              //                 var id_string = "";
+              //                 if (attr == "beaconmajor"){
+              //                     id_string = "beacon_" + newValue + "_" + old_minor;
+              //                 } else if (attr == "beaconminor") {
+              //                     id_string = "beacon_" + old_major + "_" + newValue;
+              //                 }
+              //                 console.log(id_string);
+              //                 elem.setAttribute("id", id_string);
+              //                 // elem.removeAttribute(attr);
   			}
   			else elem.setAttribute(attr, newValue);
 
